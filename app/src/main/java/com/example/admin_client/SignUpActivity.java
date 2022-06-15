@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -38,6 +40,9 @@ interface SignUpService {
     @POST("signup/phone-check/verify")
     Call<ResponseBody> phoneVerify(@Body JsonObject body);
 
+    @POST("signup")
+    Call<ResponseBody> signUp(@Body JsonObject body);
+
 }
 
 public class SignUpActivity extends AppCompatActivity {
@@ -49,9 +54,9 @@ public class SignUpActivity extends AppCompatActivity {
     SignUpService service = retrofit.create(SignUpService.class);
     JsonParser jsonParser = new JsonParser();
 
-    Button phone_verify_btn, code_verify_btn, id_verify_btn;
-    EditText phone_number, code_verify_input, id_input;
-    TextView code_verify_txt, id_verify_txt;
+    Button phone_verify_btn, code_verify_btn, id_verify_btn, signup_btn;
+    EditText phone_number, code_verify_input, id_input, pwd_input, pwd_check_input, name_input;
+    TextView code_verify_txt, id_verify_txt, pwd_verify_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,53 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 idCheck(id_input.getText().toString());
+            }
+        });
+
+        pwd_input = findViewById(R.id.pwd_input);
+        pwd_check_input = findViewById(R.id.pwd_check_input);
+        pwd_verify_txt = findViewById(R.id.pwd_check_state);
+        pwd_check_input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Log.d(TAG, "pwd test");
+                if (pwd_input.getText().toString().equals(pwd_check_input.getText().toString())) {
+                    pwd_verify_txt.setText("O");
+                } else {
+                    pwd_verify_txt.setText("X");
+                }
+                Log.d(TAG, pwd_verify_txt.getText().toString());
+            }
+        });
+
+        signup_btn = findViewById(R.id.signup_process_button);
+        signup_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                code_verify_txt = findViewById(R.id.code_verify_txt);
+                id_verify_txt = findViewById(R.id.id_verify_txt);
+
+                if (code_verify_txt.getText().equals("인증됐습니다.") && id_verify_txt.getText().equals("사용할 수 있는 이메일입니다.")) {
+                    if (pwd_verify_txt.getText().toString().equals("O")) {
+                        signUp(id_input.getText().toString(), pwd_input.getText().toString());
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요.", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                } else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "아이디와 전화번호를 확인해주세요.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
     }
@@ -171,6 +223,45 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
                 else {
+                    try {
+                        Log.d(TAG, "Fail " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: e " + t.getMessage());
+            }
+        });
+    }
+
+    void signUp(String id, String pwd) {
+        id_input = findViewById(R.id.id_input);
+        pwd_input = findViewById(R.id.pwd_input);
+        name_input = findViewById(R.id.name_input);
+        phone_number = findViewById(R.id.phone_number_input);
+
+        JsonObject body = new JsonObject();
+        body.addProperty("id", id);
+        body.addProperty("password", pwd);
+        body.addProperty("nickname", name_input.getText().toString());
+        body.addProperty("phone_number", phone_number.getText().toString());
+
+        Call<ResponseBody> call = service.signUp(body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JsonObject res =  (JsonObject) jsonParser.parse(response.body().string());
+                        Log.d(TAG, res.get("id").getAsString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
                     try {
                         Log.d(TAG, "Fail " + response.errorBody().string());
                     } catch (IOException e) {
