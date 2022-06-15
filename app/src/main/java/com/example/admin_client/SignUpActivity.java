@@ -49,9 +49,9 @@ public class SignUpActivity extends AppCompatActivity {
     SignUpService service = retrofit.create(SignUpService.class);
     JsonParser jsonParser = new JsonParser();
 
-    Button phone_verify_btn, code_verify_btn;
-    EditText phone_number, code_verify_input;
-    TextView code_verify_txt;
+    Button phone_verify_btn, code_verify_btn, id_verify_btn;
+    EditText phone_number, code_verify_input, id_input;
+    TextView code_verify_txt, id_verify_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,15 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneVerify(code_verify_input.getText().toString(), phone_number.getText().toString());
+            }
+        });
+
+        id_verify_btn = findViewById(R.id.id_verify_button);
+        id_input = findViewById(R.id.id_input);
+        id_verify_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idCheck(id_input.getText().toString());
             }
         });
     }
@@ -138,4 +147,43 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+    void idCheck(String id) {
+        id_verify_txt = findViewById(R.id.id_verify_txt);
+
+        JsonObject body = new JsonObject();
+        body.addProperty("id", id);
+
+        Call<ResponseBody> call = service.checkId(body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JsonObject res =  (JsonObject) jsonParser.parse(response.body().string());
+                        if (res.get("is_valid").getAsBoolean()) {
+                            id_verify_txt.setText("사용할 수 있는 이메일입니다.");
+                        } else {
+                            id_verify_txt.setText("사용할 수 없는 이메일입니다.");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    try {
+                        Log.d(TAG, "Fail " + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e(TAG, "onFailure: e " + t.getMessage());
+            }
+        });
+    }
+
 }
