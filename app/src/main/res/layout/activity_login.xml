@@ -28,7 +28,7 @@
         android:id="@+id/login_pwd_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:textSize="5pt"
         android:hint="비밀번호"
         app:layout_constraintStart_toStartOf="@id/login_id_input"
@@ -43,7 +43,7 @@
         android:text="자동 로그인" />
 
     <Button
-        android:id="@+id/signup_process_button"
+        android:id="@+id/login_process_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="5pt"
