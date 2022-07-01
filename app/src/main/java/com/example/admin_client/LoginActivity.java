@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button login_button;
     EditText id_input, pwd_input;
+    CheckBox auto_login_box;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         login_button = findViewById(R.id.login_process_button);
+        auto_login_box = findViewById(R.id.auto_login_check);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("auto_login", auto_login_box.isChecked()).apply();
             }
         });
     }
