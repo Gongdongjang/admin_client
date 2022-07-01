@@ -3,7 +3,9 @@ package com.example.admin_client;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "test");
                 login();
             }
         });
@@ -79,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
                             toast.show();
                         } else {
                             String refresh_token = res.get("refresh_token").getAsString();
+                            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("access_token", access_token).apply();
+                            editor.putString("refresh_token", refresh_token).apply();
                         }
                         Log.d(TAG, res.get("access_token").getAsString());
                     } catch (IOException e) {
