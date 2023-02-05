@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:textSize="5pt"
-        android:text="상호명"
+        android:hint="상호명"
         app:layout_constraintStart_toStartOf="@+id/name_title"
         app:layout_constraintTop_toBottomOf="@+id/name_title"/>
 
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:textSize="5pt"
-        android:text="고유번호"
+        android:hint="고유번호"
         app:layout_constraintStart_toStartOf="@+id/unique_number_title"
         app:layout_constraintTop_toBottomOf="@+id/unique_number_title"/>
 
@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:textSize="5pt"
-        android:text="연락처"
+        android:hint="연락처"
         app:layout_constraintStart_toStartOf="@+id/phone_number_title"
         app:layout_constraintTop_toBottomOf="@+id/phone_number_title"/>
 
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:textSize="5pt"
-        android:text="인증번호 입력"
+        android:hint="인증번호 입력"
         app:layout_constraintStart_toStartOf="@+id/verify_title"
         app:layout_constraintTop_toBottomOf="@+id/verify_title"/>
 
@@ -209,7 +209,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:textSize="5pt"
-        android:text="아이디"
+        android:hint="아이디"
         app:layout_constraintStart_toStartOf="@+id/id_title"
         app:layout_constraintTop_toBottomOf="@+id/id_title"/>
 
@@ -251,7 +251,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:textSize="5pt"
-        android:text="비밀번호"
+        android:hint="비밀번호"
         app:layout_constraintStart_toStartOf="@+id/pwd_title"
         app:layout_constraintTop_toBottomOf="@+id/pwd_title"/>
 
@@ -261,7 +261,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:textSize="5pt"
-        android:text="비밀번호 확인"
+        android:hint="비밀번호 확인"
         app:layout_constraintStart_toStartOf="@+id/pwd_input"
         app:layout_constraintTop_toBottomOf="@+id/pwd_input"/>
 
