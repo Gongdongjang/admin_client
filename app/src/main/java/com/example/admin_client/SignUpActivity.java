@@ -40,6 +40,9 @@ interface SignUpService {
     @POST("signup/phone-check/verify")
     Call<ResponseBody> phoneVerify(@Body JsonObject body);
 
+    @POST("signup/unique-number")
+    Call<ResponseBody> checkUniqueNumber(@Body JsonObject body);
+
     @POST("signup")
     Call<ResponseBody> signUp(@Body JsonObject body);
 
@@ -54,14 +57,38 @@ public class SignUpActivity extends AppCompatActivity {
     SignUpService service = retrofit.create(SignUpService.class);
     JsonParser jsonParser = new JsonParser();
 
-    Button phone_verify_btn, code_verify_btn, id_verify_btn, signup_btn;
-    EditText phone_number, code_verify_input, id_input, pwd_input, pwd_check_input, name_input;
-    TextView code_verify_txt, id_verify_txt, pwd_verify_txt;
+    Button phone_verify_btn, code_verify_btn, id_verify_btn, signup_btn, uniqueNumberBtn;
+    EditText phone_number, code_verify_input, id_input, pwd_input, pwd_check_input, name_input, uniqueNumberInput;
+    TextView code_verify_txt, id_verify_txt, pwd_verify_txt, uniqueNumberVerifyTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        id_input = findViewById(R.id.id_input);
+        pwd_input = findViewById(R.id.pwd_input);
+        name_input = findViewById(R.id.name_input);
+        phone_number = findViewById(R.id.phone_number_input);
+
+        uniqueNumberBtn = findViewById(R.id.unique_number_button);
+        uniqueNumberInput = findViewById(R.id.unique_number_input);
+        uniqueNumberVerifyTxt = findViewById(R.id.unique_number_txt);
+        uniqueNumberBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uniqueNumber = uniqueNumberInput.getText().toString();
+                String storeName = name_input.getText().toString();
+
+                if (storeName.equals("")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "상호명을 입력해주세요.", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    checkUniqueNumber(storeName, uniqueNumber);
+                }
+            }
+        });
+
 
         phone_verify_btn = findViewById(R.id.verify_button);
         phone_number = findViewById(R.id.phone_number_input);
@@ -123,7 +150,8 @@ public class SignUpActivity extends AppCompatActivity {
                 code_verify_txt = findViewById(R.id.code_verify_txt);
                 id_verify_txt = findViewById(R.id.id_verify_txt);
 
-                if (code_verify_txt.getText().equals("인증됐습니다.") && id_verify_txt.getText().equals("사용할 수 있는 이메일입니다.")) {
+                if (code_verify_txt.getText().equals("인증됐습니다.") && id_verify_txt.getText().equals("사용할 수 있는 이메일입니다.")
+                    && uniqueNumberVerifyTxt.getText().equals("인증 됐습니다.")) {
                     if (pwd_verify_txt.getText().toString().equals("O")) {
                         signUp(id_input.getText().toString(), pwd_input.getText().toString());
                     } else {
@@ -131,10 +159,57 @@ public class SignUpActivity extends AppCompatActivity {
                         toast.show();
                     }
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "아이디와 전화번호를 확인해주세요.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "아이디, 전화번호, 고유번호를 인증해주세요.", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
+        });
+    }
+
+    void checkUniqueNumber (String storeName, String uniqueNumber) {
+        JsonObject body = new JsonObject();
+        body.addProperty("storeName", storeName);
+        body.addProperty("uniqueNumber", uniqueNumber);
+
+        Call<ResponseBody> call = service.checkUniqueNumber(body);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        JsonObject res = (JsonObject) jsonParser.parse(response.body().string());
+                        String msg = res.get("msg").getAsString();
+
+                        Log.d(TAG, Boolean.toString(msg.equals("UNIQUE_NUMBER_VERIFY_SUCCESS")));
+
+                        if (msg.equals("UNIQUE_NUMBER_VERIFY_SUCCESS"))
+                                uniqueNumberVerifyTxt.setText("인증 됐습니다.");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                        try {
+                            JsonObject res = (JsonObject) jsonParser.parse(response.errorBody().string());
+                            Log.d(TAG, "Fail " + res);
+                            String msg = res.get("msg").getAsString();
+
+                            if (msg.equals("UNIQUE_NUMBER_VERIFY_FAIL"))
+                                uniqueNumberVerifyTxt.setText("인증 번호를 확인해주세요.");
+                            else if (msg.equals("STORE_NOT_FOUND")) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "등록되지 않은 상호명입니다 관리자에게 문의해 주세요.", Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e(TAG, "onFailure: e " + t.getMessage());
+                }
         });
     }
 
@@ -239,11 +314,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     void signUp(String id, String pwd) {
-        id_input = findViewById(R.id.id_input);
-        pwd_input = findViewById(R.id.pwd_input);
-        name_input = findViewById(R.id.name_input);
-        phone_number = findViewById(R.id.phone_number_input);
-
         JsonObject body = new JsonObject();
         body.addProperty("id", id);
         body.addProperty("password", pwd);

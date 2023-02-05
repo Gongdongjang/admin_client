@@ -3,10 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.375" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.2667572463768116" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1480978260869565" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2414113362630208" />
       </map>
     </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="G" />
+    </list>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
