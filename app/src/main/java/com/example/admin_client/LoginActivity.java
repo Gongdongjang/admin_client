@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putBoolean("auto_login", auto_login_box.isChecked()).apply();
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                //intent.putExtra("store_id", store_id); <--여기수정
                 startActivity(intent);
 
             }
@@ -95,12 +94,17 @@ public class LoginActivity extends AppCompatActivity {
                             toast.show();
                         } else {
                             String refresh_token = res.get("refresh_token").getAsString();
+
                             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             SharedPreferences.Editor editor = sharedPreferences.edit();
+
                             editor.putString("access_token", access_token).apply();
                             editor.putString("refresh_token", refresh_token).apply();
 
-
+                            if (res.get("storeId") != null) {
+                                String storeId = res.get("storeId").getAsString();
+                                editor.putString("storeId", storeId).apply();
+                            }
                         }
                         Log.d(TAG, res.get("access_token").getAsString());
                     } catch (IOException e) {
