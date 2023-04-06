@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical">
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    android:background="@drawable/login"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-60dp"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="아이디"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/login_id_input"
+            android:layout_width="match_parent"
+
+            android:background="@drawable/underbar"
+            android:layout_height="30dp"
+
+            android:inputType="textPersonName"
+            android:textSize="5pt" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:text="비밀번호"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/login_pwd_input"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/underbar"
+
+            android:inputType="textPassword"
+            android:textSize="5pt"
+            app:layout_constraintStart_toStartOf="@id/login_id_input"
+            app:layout_constraintTop_toBottomOf="@id/login_id_input" />
+
+        <CheckBox
+            android:id="@+id/auto_login_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자동 로그인"
+            app:layout_constraintStart_toStartOf="@id/login_pwd_input"
+            app:layout_constraintTop_toBottomOf="@id/login_pwd_input" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_process_button"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:text="로그인"
+            android:textSize="5pt"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/btn_yes"
+           />
+    </LinearLayout>
+
+</LinearLayout>

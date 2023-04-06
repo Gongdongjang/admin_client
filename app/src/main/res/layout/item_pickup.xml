@@ -1,0 +1,92 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center_vertical"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/item_round">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_margin="12dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+
+
+
+            <TextView
+                android:id="@+id/pTime"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:textColor="#444444"
+                android:textSize="12dp"
+                android:layout_gravity="right"
+                android:text="픽업시간"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/pName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_gravity="left"
+                    android:layout_margin="2dp"
+                    android:text="구매자 이름"
+                    android:textColor="#151515"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/pMd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:layout_gravity="left"
+                    android:layout_margin="2dp"
+                    android:text="상품 이름"
+                    android:textColor="#151515"
+                    android:textSize="14dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:orientation="vertical"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+                <TextView
+                    android:id="@+id/pDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:textColor="#151515"
+                    android:textSize="14dp"
+                    android:layout_margin="2dp"
+                    android:layout_gravity="right"
+                    android:text="픽업여부"/>
+                <TextView
+                    android:id="@+id/pCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:textColor="#151515"
+                    android:textSize="14dp"
+                    android:layout_gravity="right"
+                    android:layout_margin="2dp"
+                    android:text="구매 수량"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -3,16 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.admin_client">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_icon2"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_icon2"
         android:supportsRtl="true"
         android:theme="@style/Theme.Admin_client"
         tools:targetApi="31">
+        <activity
+            android:name=".pickupActivity"/>
+        <activity
+            android:name=".storeActivity"/>
+        <activity
+            android:name=".Mypage"/>
+        <activity
+            android:name=".MDDetailActivity"/>
+        <activity
+            android:name=".PickupList"/>
+        <activity
+            android:name=".HomeActivity"/>
+        <activity
+            android:name=".TabActivity"/>
+        <activity
+            android:name=".StoreItem"/>
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

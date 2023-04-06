@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2667572463768116" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable-v24/button_round1.xml" value="0.145" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable-v24/button_round2.xml" value="0.145" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable-v24/item_img_round.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable-v24/item_round.xml" value="0.1" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/btn_no.xml" value="0.1085" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/btn_yes.xml" value="0.1085" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/dialog_bgd.xml" value="0.1085" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/ic_icon_background.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/ic_top_arrow.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/order_status_bar.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/order_status_off.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/order_status_on.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/text_background.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/top_radius.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/drawable/underbar.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_delivery_view.xml" value="0.1" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_home.xml" value="0.175" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_item_detail.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_layout_tab_custom.xml" value="0.10052083333333334" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_main.xml" value="0.175" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_order_item.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_pickup_check.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_pickup_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_pickup_view.xml" value="0.1" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_pickuplist.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_store.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_store_detail.xml" value="0.22" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_storeitem.xml" value="0.175" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/activity_storepage.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/item_home_product.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/item_pickup.xml" value="0.22" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/layout/pickup_dialog.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/mipmap-anydpi-v26/ic_icon.xml" value="0.103" />
+        <entry key="..\:/Users/pongp/Downloads/admin_client-test_dev/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.103" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1480978260869565" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2414113362630208" />
+      </map>
+    </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="G" />
+    </list>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
