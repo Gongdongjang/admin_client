@@ -54,27 +54,37 @@ public class LoginActivity extends AppCompatActivity {
 
         login_button = findViewById(R.id.login_process_button);
         auto_login_box = findViewById(R.id.auto_login_check);
+
+        id_input = findViewById(R.id.login_id_input);
+        pwd_input = findViewById(R.id.login_pwd_input);
+
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("auto_login", auto_login_box.isChecked()).apply();
+                String id = id_input.getText().toString();
+                String pwd = pwd_input.getText().toString();
 
-                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                startActivity(intent);
+                if (id.equals("") || pwd.equals("")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "정보를 모두 입력해주세요.", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    login(id, pwd);
 
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("auto_login", auto_login_box.isChecked()).apply();
+
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    void login() {
-        id_input = findViewById(R.id.login_id_input);
-        pwd_input = findViewById(R.id.login_pwd_input);
+    void login(String id, String pwd) {
         JsonObject body = new JsonObject();
-        body.addProperty("id", id_input.getText().toString());
-        body.addProperty("password", pwd_input.getText().toString());
+        body.addProperty("id", id);
+        body.addProperty("password", pwd);
 
         Call<ResponseBody> call = service.login(body);
         call.enqueue(new Callback<ResponseBody>() {
